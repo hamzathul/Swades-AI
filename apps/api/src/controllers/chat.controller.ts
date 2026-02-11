@@ -10,7 +10,6 @@ import {
   getUserConversations,
   deleteConversation,
 } from "../services/chat/conversation.service";
-import { AppError } from "../middleware/error-handler";
 
 const sendMessageSchema = z.object({
   message: z.string().min(1, "Message is required").max(5000),

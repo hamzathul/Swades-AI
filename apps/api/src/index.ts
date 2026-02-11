@@ -14,7 +14,7 @@ const app = new Hono()
   .use("*", logger())
   .use("*", cors({ origin: "*" }))
   .use("*", errorHandler)
-  // .use("/api/*", rateLimiter)
+  .use("/api/*", rateLimiter)
   .use("/api/*", authMiddleware);
 
 const api = app
