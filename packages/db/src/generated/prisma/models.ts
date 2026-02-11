@@ -11,6 +11,7 @@
 export type * from './models/Conversation'
 export type * from './models/Message'
 export type * from './models/Order'
+export type * from './models/OrderItem'
 export type * from './models/Invoice'
 export type * from './models/Refund'
 export type * from './commonInputTypes'

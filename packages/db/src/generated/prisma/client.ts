@@ -55,6 +55,11 @@ export type Message = Prisma.MessageModel
  */
 export type Order = Prisma.OrderModel
 /**
+ * Model OrderItem
+ * 
+ */
+export type OrderItem = Prisma.OrderItemModel
+/**
  * Model Invoice
  * 
  */

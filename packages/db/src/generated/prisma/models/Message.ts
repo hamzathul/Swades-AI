@@ -29,6 +29,8 @@ export type MessageMinAggregateOutputType = {
   conversationId: string | null
   role: string | null
   content: string | null
+  intent: string | null
+  agentType: string | null
   createdAt: Date | null
 }
 
@@ -37,6 +39,8 @@ export type MessageMaxAggregateOutputType = {
   conversationId: string | null
   role: string | null
   content: string | null
+  intent: string | null
+  agentType: string | null
   createdAt: Date | null
 }
 
@@ -45,6 +49,8 @@ export type MessageCountAggregateOutputType = {
   conversationId: number
   role: number
   content: number
+  intent: number
+  agentType: number
   createdAt: number
   _all: number
 }
@@ -55,6 +61,8 @@ export type MessageMinAggregateInputType = {
   conversationId?: true
   role?: true
   content?: true
+  intent?: true
+  agentType?: true
   createdAt?: true
 }
 
@@ -63,6 +71,8 @@ export type MessageMaxAggregateInputType = {
   conversationId?: true
   role?: true
   content?: true
+  intent?: true
+  agentType?: true
   createdAt?: true
 }
 
@@ -71,6 +81,8 @@ export type MessageCountAggregateInputType = {
   conversationId?: true
   role?: true
   content?: true
+  intent?: true
+  agentType?: true
   createdAt?: true
   _all?: true
 }
@@ -152,6 +164,8 @@ export type MessageGroupByOutputType = {
   conversationId: string
   role: string
   content: string
+  intent: string | null
+  agentType: string | null
   createdAt: Date
   _count: MessageCountAggregateOutputType | null
   _min: MessageMinAggregateOutputType | null
@@ -181,6 +195,8 @@ export type MessageWhereInput = {
   conversationId?: Prisma.StringFilter<"Message"> | string
   role?: Prisma.StringFilter<"Message"> | string
   content?: Prisma.StringFilter<"Message"> | string
+  intent?: Prisma.StringNullableFilter<"Message"> | string | null
+  agentType?: Prisma.StringNullableFilter<"Message"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Message"> | Date | string
   conversation?: Prisma.XOR<Prisma.ConversationScalarRelationFilter, Prisma.ConversationWhereInput>
 }
@@ -190,6 +206,8 @@ export type MessageOrderByWithRelationInput = {
   conversationId?: Prisma.SortOrder
   role?: Prisma.SortOrder
   content?: Prisma.SortOrder
+  intent?: Prisma.SortOrderInput | Prisma.SortOrder
+  agentType?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   conversation?: Prisma.ConversationOrderByWithRelationInput
 }
@@ -202,6 +220,8 @@ export type MessageWhereUniqueInput = Prisma.AtLeast<{
   conversationId?: Prisma.StringFilter<"Message"> | string
   role?: Prisma.StringFilter<"Message"> | string
   content?: Prisma.StringFilter<"Message"> | string
+  intent?: Prisma.StringNullableFilter<"Message"> | string | null
+  agentType?: Prisma.StringNullableFilter<"Message"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Message"> | Date | string
   conversation?: Prisma.XOR<Prisma.ConversationScalarRelationFilter, Prisma.ConversationWhereInput>
 }, "id">
@@ -211,6 +231,8 @@ export type MessageOrderByWithAggregationInput = {
   conversationId?: Prisma.SortOrder
   role?: Prisma.SortOrder
   content?: Prisma.SortOrder
+  intent?: Prisma.SortOrderInput | Prisma.SortOrder
+  agentType?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.MessageCountOrderByAggregateInput
   _max?: Prisma.MessageMaxOrderByAggregateInput
@@ -225,6 +247,8 @@ export type MessageScalarWhereWithAggregatesInput = {
   conversationId?: Prisma.StringWithAggregatesFilter<"Message"> | string
   role?: Prisma.StringWithAggregatesFilter<"Message"> | string
   content?: Prisma.StringWithAggregatesFilter<"Message"> | string
+  intent?: Prisma.StringNullableWithAggregatesFilter<"Message"> | string | null
+  agentType?: Prisma.StringNullableWithAggregatesFilter<"Message"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Message"> | Date | string
 }
 
@@ -232,6 +256,8 @@ export type MessageCreateInput = {
   id?: string
   role: string
   content: string
+  intent?: string | null
+  agentType?: string | null
   createdAt?: Date | string
   conversation: Prisma.ConversationCreateNestedOneWithoutMessagesInput
 }
@@ -241,6 +267,8 @@ export type MessageUncheckedCreateInput = {
   conversationId: string
   role: string
   content: string
+  intent?: string | null
+  agentType?: string | null
   createdAt?: Date | string
 }
 
@@ -248,6 +276,8 @@ export type MessageUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
+  intent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  agentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   conversation?: Prisma.ConversationUpdateOneRequiredWithoutMessagesNestedInput
 }
@@ -257,6 +287,8 @@ export type MessageUncheckedUpdateInput = {
   conversationId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
+  intent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  agentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -265,6 +297,8 @@ export type MessageCreateManyInput = {
   conversationId: string
   role: string
   content: string
+  intent?: string | null
+  agentType?: string | null
   createdAt?: Date | string
 }
 
@@ -272,6 +306,8 @@ export type MessageUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
+  intent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  agentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -280,6 +316,8 @@ export type MessageUncheckedUpdateManyInput = {
   conversationId?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
+  intent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  agentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -298,6 +336,8 @@ export type MessageCountOrderByAggregateInput = {
   conversationId?: Prisma.SortOrder
   role?: Prisma.SortOrder
   content?: Prisma.SortOrder
+  intent?: Prisma.SortOrder
+  agentType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -306,6 +346,8 @@ export type MessageMaxOrderByAggregateInput = {
   conversationId?: Prisma.SortOrder
   role?: Prisma.SortOrder
   content?: Prisma.SortOrder
+  intent?: Prisma.SortOrder
+  agentType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -314,6 +356,8 @@ export type MessageMinOrderByAggregateInput = {
   conversationId?: Prisma.SortOrder
   role?: Prisma.SortOrder
   content?: Prisma.SortOrder
+  intent?: Prisma.SortOrder
+  agentType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -363,6 +407,8 @@ export type MessageCreateWithoutConversationInput = {
   id?: string
   role: string
   content: string
+  intent?: string | null
+  agentType?: string | null
   createdAt?: Date | string
 }
 
@@ -370,6 +416,8 @@ export type MessageUncheckedCreateWithoutConversationInput = {
   id?: string
   role: string
   content: string
+  intent?: string | null
+  agentType?: string | null
   createdAt?: Date | string
 }
 
@@ -407,6 +455,8 @@ export type MessageScalarWhereInput = {
   conversationId?: Prisma.StringFilter<"Message"> | string
   role?: Prisma.StringFilter<"Message"> | string
   content?: Prisma.StringFilter<"Message"> | string
+  intent?: Prisma.StringNullableFilter<"Message"> | string | null
+  agentType?: Prisma.StringNullableFilter<"Message"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Message"> | Date | string
 }
 
@@ -414,6 +464,8 @@ export type MessageCreateManyConversationInput = {
   id?: string
   role: string
   content: string
+  intent?: string | null
+  agentType?: string | null
   createdAt?: Date | string
 }
 
@@ -421,6 +473,8 @@ export type MessageUpdateWithoutConversationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
+  intent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  agentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -428,6 +482,8 @@ export type MessageUncheckedUpdateWithoutConversationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
+  intent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  agentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -435,6 +491,8 @@ export type MessageUncheckedUpdateManyWithoutConversationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
+  intent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  agentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -445,6 +503,8 @@ export type MessageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   conversationId?: boolean
   role?: boolean
   content?: boolean
+  intent?: boolean
+  agentType?: boolean
   createdAt?: boolean
   conversation?: boolean | Prisma.ConversationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["message"]>
@@ -454,6 +514,8 @@ export type MessageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   conversationId?: boolean
   role?: boolean
   content?: boolean
+  intent?: boolean
+  agentType?: boolean
   createdAt?: boolean
   conversation?: boolean | Prisma.ConversationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["message"]>
@@ -463,6 +525,8 @@ export type MessageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   conversationId?: boolean
   role?: boolean
   content?: boolean
+  intent?: boolean
+  agentType?: boolean
   createdAt?: boolean
   conversation?: boolean | Prisma.ConversationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["message"]>
@@ -472,10 +536,12 @@ export type MessageSelectScalar = {
   conversationId?: boolean
   role?: boolean
   content?: boolean
+  intent?: boolean
+  agentType?: boolean
   createdAt?: boolean
 }
 
-export type MessageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "conversationId" | "role" | "content" | "createdAt", ExtArgs["result"]["message"]>
+export type MessageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "conversationId" | "role" | "content" | "intent" | "agentType" | "createdAt", ExtArgs["result"]["message"]>
 export type MessageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   conversation?: boolean | Prisma.ConversationDefaultArgs<ExtArgs>
 }
@@ -496,6 +562,8 @@ export type $MessagePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     conversationId: string
     role: string
     content: string
+    intent: string | null
+    agentType: string | null
     createdAt: Date
   }, ExtArgs["result"]["message"]>
   composites: {}
@@ -925,6 +993,8 @@ export interface MessageFieldRefs {
   readonly conversationId: Prisma.FieldRef<"Message", 'String'>
   readonly role: Prisma.FieldRef<"Message", 'String'>
   readonly content: Prisma.FieldRef<"Message", 'String'>
+  readonly intent: Prisma.FieldRef<"Message", 'String'>
+  readonly agentType: Prisma.FieldRef<"Message", 'String'>
   readonly createdAt: Prisma.FieldRef<"Message", 'DateTime'>
 }
     

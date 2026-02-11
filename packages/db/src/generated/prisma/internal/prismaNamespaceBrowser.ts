@@ -54,6 +54,7 @@ export const ModelName = {
   Conversation: 'Conversation',
   Message: 'Message',
   Order: 'Order',
+  OrderItem: 'OrderItem',
   Invoice: 'Invoice',
   Refund: 'Refund'
 } as const
@@ -77,7 +78,9 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const ConversationScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  createdAt: 'createdAt'
+  title: 'title',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type ConversationScalarFieldEnum = (typeof ConversationScalarFieldEnum)[keyof typeof ConversationScalarFieldEnum]
@@ -88,6 +91,8 @@ export const MessageScalarFieldEnum = {
   conversationId: 'conversationId',
   role: 'role',
   content: 'content',
+  intent: 'intent',
+  agentType: 'agentType',
   createdAt: 'createdAt'
 } as const
 
@@ -99,17 +104,33 @@ export const OrderScalarFieldEnum = {
   userId: 'userId',
   status: 'status',
   trackingNumber: 'trackingNumber',
-  total: 'total'
+  total: 'total',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+export const OrderItemScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  name: 'name',
+  quantity: 'quantity',
+  price: 'price'
+} as const
+
+export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
 
 
 export const InvoiceScalarFieldEnum = {
   id: 'id',
   orderId: 'orderId',
   amount: 'amount',
-  paid: 'paid'
+  paid: 'paid',
+  dueDate: 'dueDate',
+  paidAt: 'paidAt',
+  createdAt: 'createdAt'
 } as const
 
 export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
@@ -118,7 +139,11 @@ export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeo
 export const RefundScalarFieldEnum = {
   id: 'id',
   orderId: 'orderId',
-  status: 'status'
+  amount: 'amount',
+  status: 'status',
+  reason: 'reason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type RefundScalarFieldEnum = (typeof RefundScalarFieldEnum)[keyof typeof RefundScalarFieldEnum]

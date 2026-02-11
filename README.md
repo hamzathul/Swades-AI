@@ -1,135 +1,62 @@
-# Turborepo starter
+PROJECT: AI-powered multi-agent customer support system
 
-This Turborepo starter is maintained by the Turborepo core team.
+MONOREPO STRUCTURE (Turborepo):
 
-## Using this example
+- packages/db — Prisma ORM + PostgreSQL
+- packages/shared — Shared TypeScript types
+- apps/server — Hono.dev backend (port 3001)
+- apps/web — Next.js 15 frontend (port 3000)
 
-Run the following command:
+TECH STACK:
 
-```sh
-npx create-turbo@latest
-```
+- Backend: Hono.dev on Node.js
+- Frontend: Next.js 15 (App Router), React 19, Tailwind CSS
+- Database: PostgreSQL with Prisma ORM
+- AI: Vercel AI SDK with OpenRouter (default model: meta-llama/llama-3.1-70b-instruct)
+- Monorepo: Turborepo
+- Language: TypeScript throughout
 
-## What's inside?
+PREREQUISITES:
 
-This Turborepo includes the following packages/apps:
+- Node.js >= 18
+- PostgreSQL >= 14
+- An API key from OpenRouter (https://openrouter.ai) or OpenAI
 
-### Apps and Packages
+ENVIRONMENT VARIABLES NEEDED:
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+- DATABASE_URL (PostgreSQL connection string)
+- AI_API_KEY (OpenRouter or OpenAI key)
+- AI_BASE_URL (default: https://openrouter.ai/api/v1)
+- AI_MODEL (default: meta-llama/llama-3.1-70b-instruct)
+- PORT (default: 3001)
+- NODE_ENV (default: development)
+- RATE_LIMIT_MAX (default: 20)
+- RATE_LIMIT_WINDOW_MS (default: 60000)
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+SETUP STEPS:
 
-### Utilities
+1. Clone repo
+2. npm install (installs all workspaces)
+3. Copy .env.example to .env and fill values
+4. npm run db:generate (generates Prisma client)
+5. npm run db:migrate (runs migrations, creates tables)
+6. npm run db:seed (seeds sample data: 4 orders, 4 invoices, 1 refund, order items, 1 conversation)
+7. npm run dev (starts both frontend and backend via Turborepo)
 
-This Turborepo has some additional tools already setup for you:
+AVAILABLE SCRIPTS:
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+- npm run dev — starts both apps
+- npm run build — builds all packages
+- npm run db:generate — generates Prisma client
+- npm run db:migrate — runs migrations
+- npm run db:seed — seeds database
 
-### Build
 
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+TECHNICAL DECISIONS TO EXPLAIN:
+1. Why Turborepo monorepo (shared types between frontend/backend, single dev command, dependency management)
+2. Why controller-service pattern (separation of concerns, testability, clean request/response handling)
+3. Why SSE streaming over WebSockets (simpler to implement, HTTP-based, sufficient for one-directional server-to-client streaming, no extra dependencies)
+4. Why router agent pattern (single entry point, intent classification before delegation, specialized agents stay focused)
+5. Why OpenRouter as default AI provider (access to multiple models with one API key, easy to switch models, cost effective)
+6. Why Prisma over Drizzle (mature ecosystem, auto-generated types, simpler migrations, better documentation)
+7. Why global error handling middleware (consistent error responses, centralized logging, catches unhandled errors)

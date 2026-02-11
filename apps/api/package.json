@@ -1,11 +1,12 @@
 {
-  "name": "api",
+  "name": "@repo/api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "build": "tsc"
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +15,9 @@
   "dependencies": {
     "@ai-sdk/openai": "^3.0.26",
     "@repo/db": "*",
-    "ai": "^6.0.78"
+    "@repo/shared": "*",
+    "ai": "^6.0.79",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "tsx": "^4.21.0",

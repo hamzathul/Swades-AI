@@ -1,6 +1,9 @@
 import { createOpenAI } from "@ai-sdk/openai";
+import { env } from "./env";
 
-export const ai = createOpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-  baseURL: process.env.OPENAI_BASE_URL,
+const openai = createOpenAI({
+  apiKey: env.AI_API_KEY,
+  baseURL: env.AI_BASE_URL,
 });
+
+export const ai = (model?: string) => openai(model ?? env.AI_MODEL);

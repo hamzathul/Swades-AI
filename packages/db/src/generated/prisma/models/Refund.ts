@@ -20,46 +20,88 @@ export type RefundModel = runtime.Types.Result.DefaultSelection<Prisma.$RefundPa
 
 export type AggregateRefund = {
   _count: RefundCountAggregateOutputType | null
+  _avg: RefundAvgAggregateOutputType | null
+  _sum: RefundSumAggregateOutputType | null
   _min: RefundMinAggregateOutputType | null
   _max: RefundMaxAggregateOutputType | null
+}
+
+export type RefundAvgAggregateOutputType = {
+  amount: number | null
+}
+
+export type RefundSumAggregateOutputType = {
+  amount: number | null
 }
 
 export type RefundMinAggregateOutputType = {
   id: string | null
   orderId: string | null
+  amount: number | null
   status: string | null
+  reason: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type RefundMaxAggregateOutputType = {
   id: string | null
   orderId: string | null
+  amount: number | null
   status: string | null
+  reason: string | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type RefundCountAggregateOutputType = {
   id: number
   orderId: number
+  amount: number
   status: number
+  reason: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
 
+export type RefundAvgAggregateInputType = {
+  amount?: true
+}
+
+export type RefundSumAggregateInputType = {
+  amount?: true
+}
+
 export type RefundMinAggregateInputType = {
   id?: true
   orderId?: true
+  amount?: true
   status?: true
+  reason?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type RefundMaxAggregateInputType = {
   id?: true
   orderId?: true
+  amount?: true
   status?: true
+  reason?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type RefundCountAggregateInputType = {
   id?: true
   orderId?: true
+  amount?: true
   status?: true
+  reason?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -101,6 +143,18 @@ export type RefundAggregateArgs<ExtArgs extends runtime.Types.Extensions.Interna
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: RefundAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: RefundSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: RefundMinAggregateInputType
@@ -131,6 +185,8 @@ export type RefundGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   _count?: RefundCountAggregateInputType | true
+  _avg?: RefundAvgAggregateInputType
+  _sum?: RefundSumAggregateInputType
   _min?: RefundMinAggregateInputType
   _max?: RefundMaxAggregateInputType
 }
@@ -138,8 +194,14 @@ export type RefundGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type RefundGroupByOutputType = {
   id: string
   orderId: string
+  amount: number
   status: string
+  reason: string | null
+  createdAt: Date
+  updatedAt: Date
   _count: RefundCountAggregateOutputType | null
+  _avg: RefundAvgAggregateOutputType | null
+  _sum: RefundSumAggregateOutputType | null
   _min: RefundMinAggregateOutputType | null
   _max: RefundMaxAggregateOutputType | null
 }
@@ -165,31 +227,52 @@ export type RefundWhereInput = {
   NOT?: Prisma.RefundWhereInput | Prisma.RefundWhereInput[]
   id?: Prisma.StringFilter<"Refund"> | string
   orderId?: Prisma.StringFilter<"Refund"> | string
+  amount?: Prisma.FloatFilter<"Refund"> | number
   status?: Prisma.StringFilter<"Refund"> | string
+  reason?: Prisma.StringNullableFilter<"Refund"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Refund"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Refund"> | Date | string
+  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
 }
 
 export type RefundOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  reason?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  order?: Prisma.OrderOrderByWithRelationInput
 }
 
 export type RefundWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  orderId?: string
   AND?: Prisma.RefundWhereInput | Prisma.RefundWhereInput[]
   OR?: Prisma.RefundWhereInput[]
   NOT?: Prisma.RefundWhereInput | Prisma.RefundWhereInput[]
-  orderId?: Prisma.StringFilter<"Refund"> | string
+  amount?: Prisma.FloatFilter<"Refund"> | number
   status?: Prisma.StringFilter<"Refund"> | string
-}, "id">
+  reason?: Prisma.StringNullableFilter<"Refund"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Refund"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Refund"> | Date | string
+  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
+}, "id" | "orderId">
 
 export type RefundOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  reason?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.RefundCountOrderByAggregateInput
+  _avg?: Prisma.RefundAvgOrderByAggregateInput
   _max?: Prisma.RefundMaxOrderByAggregateInput
   _min?: Prisma.RefundMinOrderByAggregateInput
+  _sum?: Prisma.RefundSumOrderByAggregateInput
 }
 
 export type RefundScalarWhereWithAggregatesInput = {
@@ -198,67 +281,207 @@ export type RefundScalarWhereWithAggregatesInput = {
   NOT?: Prisma.RefundScalarWhereWithAggregatesInput | Prisma.RefundScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Refund"> | string
   orderId?: Prisma.StringWithAggregatesFilter<"Refund"> | string
+  amount?: Prisma.FloatWithAggregatesFilter<"Refund"> | number
   status?: Prisma.StringWithAggregatesFilter<"Refund"> | string
+  reason?: Prisma.StringNullableWithAggregatesFilter<"Refund"> | string | null
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Refund"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Refund"> | Date | string
 }
 
 export type RefundCreateInput = {
   id?: string
-  orderId: string
+  amount: number
   status: string
+  reason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  order: Prisma.OrderCreateNestedOneWithoutRefundInput
 }
 
 export type RefundUncheckedCreateInput = {
   id?: string
   orderId: string
+  amount: number
   status: string
+  reason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type RefundUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  order?: Prisma.OrderUpdateOneRequiredWithoutRefundNestedInput
 }
 
 export type RefundUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type RefundCreateManyInput = {
   id?: string
   orderId: string
+  amount: number
   status: string
+  reason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type RefundUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type RefundUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type RefundNullableScalarRelationFilter = {
+  is?: Prisma.RefundWhereInput | null
+  isNot?: Prisma.RefundWhereInput | null
 }
 
 export type RefundCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  reason?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+}
+
+export type RefundAvgOrderByAggregateInput = {
+  amount?: Prisma.SortOrder
 }
 
 export type RefundMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  reason?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type RefundMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
+  amount?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  reason?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+}
+
+export type RefundSumOrderByAggregateInput = {
+  amount?: Prisma.SortOrder
+}
+
+export type RefundCreateNestedOneWithoutOrderInput = {
+  create?: Prisma.XOR<Prisma.RefundCreateWithoutOrderInput, Prisma.RefundUncheckedCreateWithoutOrderInput>
+  connectOrCreate?: Prisma.RefundCreateOrConnectWithoutOrderInput
+  connect?: Prisma.RefundWhereUniqueInput
+}
+
+export type RefundUncheckedCreateNestedOneWithoutOrderInput = {
+  create?: Prisma.XOR<Prisma.RefundCreateWithoutOrderInput, Prisma.RefundUncheckedCreateWithoutOrderInput>
+  connectOrCreate?: Prisma.RefundCreateOrConnectWithoutOrderInput
+  connect?: Prisma.RefundWhereUniqueInput
+}
+
+export type RefundUpdateOneWithoutOrderNestedInput = {
+  create?: Prisma.XOR<Prisma.RefundCreateWithoutOrderInput, Prisma.RefundUncheckedCreateWithoutOrderInput>
+  connectOrCreate?: Prisma.RefundCreateOrConnectWithoutOrderInput
+  upsert?: Prisma.RefundUpsertWithoutOrderInput
+  disconnect?: Prisma.RefundWhereInput | boolean
+  delete?: Prisma.RefundWhereInput | boolean
+  connect?: Prisma.RefundWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RefundUpdateToOneWithWhereWithoutOrderInput, Prisma.RefundUpdateWithoutOrderInput>, Prisma.RefundUncheckedUpdateWithoutOrderInput>
+}
+
+export type RefundUncheckedUpdateOneWithoutOrderNestedInput = {
+  create?: Prisma.XOR<Prisma.RefundCreateWithoutOrderInput, Prisma.RefundUncheckedCreateWithoutOrderInput>
+  connectOrCreate?: Prisma.RefundCreateOrConnectWithoutOrderInput
+  upsert?: Prisma.RefundUpsertWithoutOrderInput
+  disconnect?: Prisma.RefundWhereInput | boolean
+  delete?: Prisma.RefundWhereInput | boolean
+  connect?: Prisma.RefundWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RefundUpdateToOneWithWhereWithoutOrderInput, Prisma.RefundUpdateWithoutOrderInput>, Prisma.RefundUncheckedUpdateWithoutOrderInput>
+}
+
+export type RefundCreateWithoutOrderInput = {
+  id?: string
+  amount: number
+  status: string
+  reason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type RefundUncheckedCreateWithoutOrderInput = {
+  id?: string
+  amount: number
+  status: string
+  reason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type RefundCreateOrConnectWithoutOrderInput = {
+  where: Prisma.RefundWhereUniqueInput
+  create: Prisma.XOR<Prisma.RefundCreateWithoutOrderInput, Prisma.RefundUncheckedCreateWithoutOrderInput>
+}
+
+export type RefundUpsertWithoutOrderInput = {
+  update: Prisma.XOR<Prisma.RefundUpdateWithoutOrderInput, Prisma.RefundUncheckedUpdateWithoutOrderInput>
+  create: Prisma.XOR<Prisma.RefundCreateWithoutOrderInput, Prisma.RefundUncheckedCreateWithoutOrderInput>
+  where?: Prisma.RefundWhereInput
+}
+
+export type RefundUpdateToOneWithWhereWithoutOrderInput = {
+  where?: Prisma.RefundWhereInput
+  data: Prisma.XOR<Prisma.RefundUpdateWithoutOrderInput, Prisma.RefundUncheckedUpdateWithoutOrderInput>
+}
+
+export type RefundUpdateWithoutOrderInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type RefundUncheckedUpdateWithoutOrderInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.FloatFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -266,36 +489,70 @@ export type RefundMinOrderByAggregateInput = {
 export type RefundSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   orderId?: boolean
+  amount?: boolean
   status?: boolean
+  reason?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["refund"]>
 
 export type RefundSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   orderId?: boolean
+  amount?: boolean
   status?: boolean
+  reason?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["refund"]>
 
 export type RefundSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   orderId?: boolean
+  amount?: boolean
   status?: boolean
+  reason?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["refund"]>
 
 export type RefundSelectScalar = {
   id?: boolean
   orderId?: boolean
+  amount?: boolean
   status?: boolean
+  reason?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type RefundOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "status", ExtArgs["result"]["refund"]>
+export type RefundOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "amount" | "status" | "reason" | "createdAt" | "updatedAt", ExtArgs["result"]["refund"]>
+export type RefundInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
+}
+export type RefundIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
+}
+export type RefundIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
+}
 
 export type $RefundPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Refund"
-  objects: {}
+  objects: {
+    order: Prisma.$OrderPayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     orderId: string
+    amount: number
     status: string
+    reason: string | null
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["refund"]>
   composites: {}
 }
@@ -690,6 +947,7 @@ readonly fields: RefundFieldRefs;
  */
 export interface Prisma__RefundClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  order<T extends Prisma.OrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrderDefaultArgs<ExtArgs>>): Prisma.Prisma__OrderClient<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -721,7 +979,11 @@ export interface Prisma__RefundClient<T, Null = never, ExtArgs extends runtime.T
 export interface RefundFieldRefs {
   readonly id: Prisma.FieldRef<"Refund", 'String'>
   readonly orderId: Prisma.FieldRef<"Refund", 'String'>
+  readonly amount: Prisma.FieldRef<"Refund", 'Float'>
   readonly status: Prisma.FieldRef<"Refund", 'String'>
+  readonly reason: Prisma.FieldRef<"Refund", 'String'>
+  readonly createdAt: Prisma.FieldRef<"Refund", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Refund", 'DateTime'>
 }
     
 
@@ -738,6 +1000,10 @@ export type RefundFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Refund
    */
   omit?: Prisma.RefundOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RefundInclude<ExtArgs> | null
   /**
    * Filter, which Refund to fetch.
    */
@@ -757,6 +1023,10 @@ export type RefundFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.RefundOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RefundInclude<ExtArgs> | null
+  /**
    * Filter, which Refund to fetch.
    */
   where: Prisma.RefundWhereUniqueInput
@@ -774,6 +1044,10 @@ export type RefundFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Refund
    */
   omit?: Prisma.RefundOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RefundInclude<ExtArgs> | null
   /**
    * Filter, which Refund to fetch.
    */
@@ -823,6 +1097,10 @@ export type RefundFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.RefundOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RefundInclude<ExtArgs> | null
+  /**
    * Filter, which Refund to fetch.
    */
   where?: Prisma.RefundWhereInput
@@ -871,6 +1149,10 @@ export type RefundFindManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.RefundOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RefundInclude<ExtArgs> | null
+  /**
    * Filter, which Refunds to fetch.
    */
   where?: Prisma.RefundWhereInput
@@ -914,6 +1196,10 @@ export type RefundCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.RefundOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RefundInclude<ExtArgs> | null
+  /**
    * The data needed to create a Refund.
    */
   data: Prisma.XOR<Prisma.RefundCreateInput, Prisma.RefundUncheckedCreateInput>
@@ -947,6 +1233,10 @@ export type RefundCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    */
   data: Prisma.RefundCreateManyInput | Prisma.RefundCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RefundIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -961,6 +1251,10 @@ export type RefundUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Refund
    */
   omit?: Prisma.RefundOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RefundInclude<ExtArgs> | null
   /**
    * The data needed to update a Refund.
    */
@@ -1013,6 +1307,10 @@ export type RefundUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many Refunds to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RefundIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1027,6 +1325,10 @@ export type RefundUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Refund
    */
   omit?: Prisma.RefundOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RefundInclude<ExtArgs> | null
   /**
    * The filter to search for the Refund to update in case it exists.
    */
@@ -1053,6 +1355,10 @@ export type RefundDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Refund
    */
   omit?: Prisma.RefundOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RefundInclude<ExtArgs> | null
   /**
    * Filter which Refund to delete.
    */
@@ -1085,4 +1391,8 @@ export type RefundDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Refund
    */
   omit?: Prisma.RefundOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RefundInclude<ExtArgs> | null
 }
