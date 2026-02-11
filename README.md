@@ -10,7 +10,7 @@ MONOREPO STRUCTURE (Turborepo):
 TECH STACK:
 
 - Backend: Hono.dev on Node.js
-- Frontend: Next.js 15 (App Router), React 19, Tailwind CSS
+- Frontend: Next.js 16 (App Router), React 19, Tailwind CSS
 - Database: PostgreSQL with Prisma ORM
 - AI: Vercel AI SDK with OpenRouter (default model: meta-llama/llama-3.1-70b-instruct)
 - Monorepo: Turborepo
