@@ -14,7 +14,7 @@ export async function listUserConversations(userId: string) {
 }
 
 export async function getConversationHistory(conversationId: string) {
-  return prisma.conversation.findUnique({
+  return  prisma.conversation.findUnique({
     where: { id: conversationId },
     include: {
       messages: {

@@ -5,7 +5,8 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsc"
+    "build": "tsc",
+    "db:seed": "tsx src/seed.ts"
   },
   "exports": {
     ".": {
